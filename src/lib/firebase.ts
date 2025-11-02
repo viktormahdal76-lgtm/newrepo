@@ -2,29 +2,35 @@ import { initializeApp, FirebaseApp } from 'firebase/app';
 import { getAuth, Auth } from 'firebase/auth';
 import { getFirestore, Firestore } from 'firebase/firestore';
 
+// Your Firebase configuration is now loaded from the secrets you just entered
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || 'demo-key',
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || 'demo.firebaseapp.com',
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || 'demo-project',
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
 };
 
-export const isFirebaseConfigured = !!(
-  import.meta.env.VITE_FIREBASE_API_KEY && 
-  import.meta.env.VITE_FIREBASE_AUTH_DOMAIN && 
-  import.meta.env.VITE_FIREBASE_PROJECT_ID
-);
-
+// We create placeholder variables
 let app: FirebaseApp;
 let auth: Auth;
 let db: Firestore;
 
-try {
-  app = initializeApp(firebaseConfig);
-  auth = getAuth(app);
-  db = getFirestore(app);
-} catch (error) {
-  console.error('Firebase initialization error:', error);
+// This is the "lazy initialization" function that prevents crashes
+function initializeFirebase() {
+  // This "if" statement ensures the code only runs ONCE
+  if (!app) {
+    try {
+      app = initializeApp(firebaseConfig);
+      auth = getAuth(app);
+      db = getFirestore(app);
+      console.log("Firebase initialized successfully!");
+    } catch (error) {
+      console.error('Firebase initialization error!', error);
+    }
+  }
 }
 
-export { auth, db, app };
+// We call the function once to get everything ready
+initializeFirebase();
 
+// We export the initialized services for the rest of the app to use
+export { auth, db, app };

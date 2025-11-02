@@ -1,16 +1,16 @@
-import { db, isFirebaseConfigured } from './firebase';
+import { db } from './firebase';
 import { collection, query, where, getDocs, doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 
 const ADMIN_EMAILS = ['admin@huddleme.app', 'admin@example.com'];
 
 export const adminService = {
   isAdmin: async (email: string | null): Promise<boolean> => {
-    if (!email || !isFirebaseConfigured) return false;
+    if (!email ) return false;
     return ADMIN_EMAILS.includes(email.toLowerCase());
   },
 
   getUserStats: async () => {
-    if (!isFirebaseConfigured) return null;
+   
     const profilesSnap = await getDocs(collection(db, 'profiles'));
     const profiles = profilesSnap.docs.map(d => d.data());
     
@@ -24,7 +24,7 @@ export const adminService = {
   },
 
   getConnectionStats: async () => {
-    if (!isFirebaseConfigured) return null;
+   
     const connectionsSnap = await getDocs(collection(db, 'connections'));
     const connections = connectionsSnap.docs.map(d => d.data());
     
@@ -45,18 +45,18 @@ export const adminService = {
   },
 
   getAllUsers: async () => {
-    if (!isFirebaseConfigured) return [];
+    
     const profilesSnap = await getDocs(collection(db, 'profiles'));
     return profilesSnap.docs.map(d => ({ id: d.id, ...d.data() }));
   },
 
   updateUserTier: async (userId: string, tier: string) => {
-    if (!isFirebaseConfigured) return;
+    
     await updateDoc(doc(db, 'profiles', userId), { subscriptionTier: tier });
   },
 
   deleteUser: async (userId: string) => {
-    if (!isFirebaseConfigured) return;
+   
     await deleteDoc(doc(db, 'profiles', userId));
   },
 };

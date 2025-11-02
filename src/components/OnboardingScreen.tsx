@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { auth, db, isFirebaseConfigured } from '@/lib/firebase';
+import { auth, db } from '@/lib/firebase';
 import { doc, setDoc } from 'firebase/firestore';
 
 const INTERESTS = [
@@ -29,7 +29,7 @@ export default function OnboardingScreen() {
   };
 
   const handleComplete = async () => {
-    if (!isFirebaseConfigured || !auth.currentUser) return;
+    if ( !auth.currentUser) return;
     
     setLoading(true);
     try {

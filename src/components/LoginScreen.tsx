@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
-import { auth, isFirebaseConfigured } from '@/lib/firebase';
+import { auth } from '@/lib/firebase';
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { toast } from '@/components/ui/use-toast';
 import { useAppContext } from '@/contexts/AppContext';
@@ -37,7 +37,7 @@ export default function LoginScreen({
       return;
     }
     
-    if (!isFirebaseConfigured) {
+   
       setLoading(true);
       setTimeout(() => {
         setDemoMode();
@@ -45,7 +45,7 @@ export default function LoginScreen({
         setLoading(false);
       }, 500);
       return;
-    }
+    
     
     setLoading(true);
     try {
@@ -59,11 +59,11 @@ export default function LoginScreen({
   };
 
   const handleGoogleSignIn = async () => {
-    if (!isFirebaseConfigured) {
+   
       setDemoMode();
       toast({ title: 'Demo Mode', description: 'Using demo mode - Firebase not configured' });
       return;
-    }
+    
 
     setLoading(true);
     try {
@@ -82,7 +82,7 @@ export default function LoginScreen({
       <Card className="w-full max-w-md p-8">
         <h2 className="text-3xl font-bold text-center mb-6">Welcome Back</h2>
         
-        {!isFirebaseConfigured && (
+        { (
           <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg text-sm text-blue-800">
             Demo mode available. Try: username "demo" / password "demo"
           </div>

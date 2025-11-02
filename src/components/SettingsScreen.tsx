@@ -3,7 +3,7 @@ import { useAppContext } from '@/contexts/AppContext';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
-import BLESettingsPanel from './BLESettingsPanel';
+
 import { useSubscription } from '@/hooks/useSubscription';
 import { TIER_LIMITS } from '@/lib/subscription-service';
 import { Badge } from '@/components/ui/badge';

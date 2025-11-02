@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { toast } from '@/components/ui/use-toast';
 import { User, Connection, Message, Chat, AppScreen, Meetup, Venue } from '@/types';
-import { auth, db, isFirebaseConfigured } from '@/lib/firebase';
+import { auth, db } from '@/lib/firebase';
 import { onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
 import { doc, getDoc, updateDoc, collection, query, where, onSnapshot, or } from 'firebase/firestore';
 import { connectionService } from '@/lib/database-connections';
@@ -93,7 +93,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Auth listener
   useEffect(() => {
-    if (!isFirebaseConfigured) {
+   {
       setIsAuthenticated(false);
       return;
     }
@@ -135,7 +135,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Real-time listeners
   useEffect(() => {
-    if (!currentUser || !isFirebaseConfigured) return;
+    if (!currentUser ) return;
     const unsubscribers: (() => void)[] = [];
     
     // Listen to connections
@@ -155,7 +155,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Nearby users listener
   useEffect(() => {
-    if (!isScanning || !isFirebaseConfigured) return;
+    if (!isScanning ) return;
     const q = query(collection(db, 'profiles'), where('isOnline', '==', true));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const users = snapshot.docs
@@ -211,7 +211,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       locationService.startTracking((location) => {
         setUserLocation(location);
         // Update user location in Firebase if authenticated
-        if (currentUser && isFirebaseConfigured) {
+        if (currentUser ) {
           updateDoc(doc(db, 'profiles', currentUser.id), {
             location: {
               latitude: location.latitude,
@@ -233,7 +233,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const logout = async () => {
     locationService.stopTracking();
-    if (currentUser && isFirebaseConfigured) {
+    if (currentUser ) {
       await updateDoc(doc(db, 'profiles', currentUser.id), { isOnline: false });
       await auth.signOut();
     }

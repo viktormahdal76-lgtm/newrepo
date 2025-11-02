@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
-import { auth, isFirebaseConfigured } from '@/lib/firebase';
+import { auth } from '@/lib/firebase';
 import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { toast } from '@/components/ui/use-toast';
 import { useAppContext } from '@/contexts/AppContext';
@@ -26,7 +26,7 @@ export default function SignupScreen({
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!isFirebaseConfigured) {
+
       setLoading(true);
       setTimeout(() => {
         setDemoMode();
@@ -34,7 +34,7 @@ export default function SignupScreen({
         setLoading(false);
       }, 500);
       return;
-    }
+    
     
     setLoading(true);
     try {
@@ -48,11 +48,11 @@ export default function SignupScreen({
   };
 
   const handleGoogleSignIn = async () => {
-    if (!isFirebaseConfigured) {
+   
       setDemoMode();
       toast({ title: 'Demo Mode', description: 'Using demo mode - Firebase not configured' });
       return;
-    }
+    
 
     setLoading(true);
     try {
@@ -71,11 +71,11 @@ export default function SignupScreen({
       <Card className="w-full max-w-md p-8">
         <h2 className="text-3xl font-bold text-center mb-6">Create Account</h2>
         
-        {!isFirebaseConfigured && (
+        
           <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg text-sm text-blue-800">
             Demo mode available. Use login with "demo" / "demo" or sign up to explore.
           </div>
-        )}
+       
         
         <form onSubmit={handleSignup} className="space-y-4">
           <div>
