@@ -1,0 +1,83 @@
+{
+  "appInformation": {
+    "name": "HuddleMe",
+    "subtitle": "Meet People Nearby Instantly",
+    "bundleId": "com.huddleme.app",
+    "sku": "HUDDLEME001",
+    "primaryLanguage": "en-US",
+    "category": "Social Networking",
+    "secondaryCategory": "Lifestyle"
+  },
+  "description": {
+    "full": "HuddleMe helps you discover and connect with interesting people nearby in real-time. Whether you're looking for friends, networking opportunities, or spontaneous meetups, HuddleMe makes it easy.\n\nKEY FEATURES:\n• Real-time Radar - See who's nearby and available right now\n• Instant Messaging - Chat with connections seamlessly\n• Smart Meetup Proposals - Suggest venues and times effortlessly\n• Privacy First - Control your visibility and who can see you\n• Offline Support - Queue actions when offline, sync automatically\n\nPERFECT FOR:\n✓ Meeting new friends in your area\n✓ Professional networking at events\n✓ Finding activity partners\n✓ Spontaneous social gatherings\n✓ Connecting with like-minded people\n\nPREMIUM FEATURES:\n• Unlimited connections\n• Advanced filters\n• Priority visibility\n• Read receipts\n• Custom themes\n\nDownload HuddleMe today and start making meaningful connections!",
+    "promotional": "🎉 New: Background sync keeps you connected even offline! Plus improved radar accuracy and faster messaging.",
+    "keywords": "meetup,social,nearby,friends,networking,chat,radar,local,connect,people"
+  },
+  "urls": {
+    "support": "https://huddleme.app/support",
+    "marketing": "https://huddleme.app",
+    "privacy": "https://huddleme.app/privacy"
+  },
+  "pricing": {
+    "basePriceType": "Free",
+    "inAppPurchases": [
+      {
+        "type": "Auto-Renewable Subscription",
+        "productId": "com.huddleme.premium.monthly",
+        "referenceName": "HuddleMe Premium Monthly",
+        "price": 9.99,
+        "duration": "1 Month"
+      },
+      {
+        "type": "Auto-Renewable Subscription",
+        "productId": "com.huddleme.premium.yearly",
+        "referenceName": "HuddleMe Premium Yearly",
+        "price": 79.99,
+        "duration": "1 Year"
+      }
+    ]
+  },
+  "ageRating": {
+    "rating": "17+",
+    "reasons": [
+      "Unrestricted Web Access",
+      "User Generated Content",
+      "Location Services"
+    ]
+  },
+  "screenshots": {
+    "required": [
+      {
+        "device": "6.7 inch Display",
+        "resolution": "1290x2796",
+        "count": "3-10"
+      },
+      {
+        "device": "6.5 inch Display",
+        "resolution": "1242x2688",
+        "count": "3-10"
+      },
+      {
+        "device": "5.5 inch Display",
+        "resolution": "1242x2208",
+        "count": "3-10"
+      }
+    ],
+    "suggestedScreens": [
+      "Radar Screen - Show nearby users",
+      "Chat Interface - Active conversation",
+      "Meetup Proposal - Venue selection",
+      "Profile Screen - User profile",
+      "Connections List - Active connections"
+    ]
+  },
+  "appIcon": {
+    "size": "1024x1024",
+    "format": "PNG",
+    "requirements": [
+      "No transparency",
+      "No rounded corners",
+      "RGB color space"
+    ]
+  }
+}
