@@ -24,7 +24,8 @@ import LocationPermissionModal from './LocationPermissionModal';
 
 
 const AppLayout: React.FC = () => {
-  const { currentScreen, setCurrentScreen, authUser, showLocationModal } = useAppContext();
+  const { currentScreen, setCurrentScreen, authUser } = useAppContext();
+  const showLocationModal = true;
   const [isAdmin, setIsAdmin] = useState(false);
 
 
